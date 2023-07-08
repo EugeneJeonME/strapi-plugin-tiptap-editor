@@ -1,0 +1,78 @@
+{
+  "extends": [
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:import/typescript",
+    "plugin:import/recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import", "react"],
+  "settings": {
+    "import/ignore": [
+      "node_modules",
+      "\\.(coffee|scss|css|less|hbs|svg|json)$"
+    ],
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [".ts", ".tsx", ".js", ".jsx"]
+      }
+    },
+    "import/parsers": { "@typescript-eslint/parser": [".ts", ".tsx"] },
+    "react": {
+      "version": "detect"
+    }
+  },
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "warn",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "format": ["camelCase", "UPPER_CASE", "PascalCase"],
+        "selector": "variable",
+        "leadingUnderscore": "allow"
+      },
+      { "format": ["camelCase", "PascalCase"], "selector": "function" },
+      { "format": ["PascalCase"], "selector": "interface" },
+      { "format": ["PascalCase"], "selector": "typeAlias" }
+    ],
+    "no-implicit-coercion": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          // 'sibling', 'parent', 'index' 타입은 상대 경로의 파일로부터 import 되는 모듈을 의미한다.
+          ["sibling", "parent", "index"],
+          // 생략된 'object' 타입등
+          "unknown",
+          // Type 은 마지막에 import 한다.
+          "type"
+        ],
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        },
+        "newlines-between": "always-and-inside-groups"
+      }
+    ],
+    "import/no-unresolved": "off",
+    "import/export": "off",
+    // MARK: React 17 JSX Scope 이슈가 없다.
+    "react/react-in-jsx-scope": "off",
+    "react/jsx-filename-extension": [
+      "error",
+      { "extensions": ["tsx", "ts", "jsx", "js"] }
+    ],
+    "react/jsx-key": "off",
+    "react/jsx-props-no-spreading": "off",
+    "react/function-component-definition": [
+      "off",
+      { "namedcomponents": "arrow-function" }
+    ]
+  }
+}
