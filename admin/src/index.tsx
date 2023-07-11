@@ -32,7 +32,7 @@ export default {
         id: pluginId,
         intlLabel: {
           id: getTrad('plugin.settings'),
-          defaultMessage: 'Settings for Strapi Plugin TipTap Editor',
+          defaultMessage: 'Settings for TipTap Editor',
         },
       },
       [
@@ -42,7 +42,7 @@ export default {
             defaultMessage: 'Settings',
           },
           id: 'settings',
-          to: `/settings/${name}`,
+          to: `/settings/${pluginInfo.name}`,
           Component: SettingsComponent,
           permissions: [],
         },
@@ -74,8 +74,6 @@ export default {
         validator: () => ({}),
       },
     });
-
-    // TODO: ...
 
     // app.addMenuLink({
     //   to: `/plugins/${pluginId}`,
