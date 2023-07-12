@@ -4,7 +4,11 @@ import React, { Fragment, useCallback, useState } from 'react';
 import { AiOutlineBgColors } from 'react-icons/ai';
 import { PiTextAUnderlineFill } from 'react-icons/pi';
 
-import { getDaisyUiColorKey } from '../../../../../../utils/colors';
+import {
+  DaisyUiColorKeys,
+  getDaisyUiColor,
+  getDaisyUiColorKey,
+} from '../../../../../../utils/colors';
 import DaisyColorDialog from '../../Dialog/DaisyColorDialog';
 
 import type { Editor } from '@tiptap/react';
@@ -15,8 +19,20 @@ interface LinkBubbleProps {
 
 export const LinkBubble = ({ editor }: LinkBubbleProps) => {
   const [isOpenDaisyColorDialog, setOpenDaisyColorDialog] = useState(false);
-  const [colorKey, setColorKey] = useState<string | undefined>();
-  const [hoverClassName, setHoverClassName] = useState<string | undefined>();
+  const [colorKey, setColorKey] = useState<string | undefined>(
+    DaisyUiColorKeys.find(key =>
+      (editor.getAttributes('link').class?.split(' ') || []).includes(
+        `link-${key}`
+      )
+    )
+  );
+  const [hoverClassName, setHoverClassName] = useState<string | undefined>(
+    (editor.getAttributes('link').class?.split(' ') || []).includes(
+      'link-hover'
+    )
+      ? 'link-hover'
+      : undefined
+  );
 
   const handleToggleHover = useCallback(() => {
     setHoverClassName(value => {
@@ -83,7 +99,7 @@ export const LinkBubble = ({ editor }: LinkBubbleProps) => {
 
       {/* Dialogs */}
       <DaisyColorDialog
-        color={colorKey}
+        color={getDaisyUiColor(colorKey)}
         isOpen={isOpenDaisyColorDialog}
         onClose={() => setOpenDaisyColorDialog(false)}
         autoClose={true}

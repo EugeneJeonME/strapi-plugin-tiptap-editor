@@ -12,8 +12,19 @@ export const DaisyUiColors = {
   error: '#F87272', // Error (--er / --erc)
 };
 
+export const DaisyUiColorKeys = Object.keys(
+  DaisyUiColors
+) as (keyof typeof DaisyUiColors)[];
+
+export const getDaisyUiColor = (
+  colorKey: keyof typeof DaisyUiColors | string | undefined
+) =>
+  colorKey && DaisyUiColorKeys.find(key => key === colorKey)
+    ? DaisyUiColors[colorKey as keyof typeof DaisyUiColors]
+    : undefined;
+
 export const getDaisyUiColorKey = (color: string) =>
-  (Object.keys(DaisyUiColors) as (keyof typeof DaisyUiColors)[]).find(key => {
+  DaisyUiColorKeys.find(key => {
     const normalizedDaisyUiColor = getNormalizedColor(DaisyUiColors[key]);
     return (
       normalizedDaisyUiColor &&

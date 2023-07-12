@@ -243,39 +243,34 @@ export const Wrapper = styled(Box)`
     .link {
       cursor: pointer;
       text-decoration-line: underline;
+      --tw-text-opacity: 1;
+      color: color: hsl(var(--in) / var(--tw-text-opacity));
 
       &.link-primary {
-        --tw-text-opacity: 1;
         color: hsl(var(--p) / var(--tw-text-opacity));
       }
 
       &.link-secondary {
-        --tw-text-opacity: 1;
         color: hsl(var(--s) / var(--tw-text-opacity));
       }
 
       &.link-accent {
-        -tw-text-opacity: 1;
         color: hsl(var(--a) / var(--tw-text-opacity));
       }
 
       &.link-success {
-        --tw-text-opacity: 1;
         color: hsl(var(--su) / var(--tw-text-opacity));
       }
 
       &.link-info {
-        --tw-text-opacity: 1;
         color: hsl(var(--in) / var(--tw-text-opacity));
       }
 
       &.link-warning {
-        --tw-text-opacity: 1;
         color: hsl(var(--wa) / var(--tw-text-opacity));
       }
 
       &.link-error {
-        --tw-text-opacity: 1;
         color: hsl(var(--er) / var(--tw-text-opacity));
       }
 
